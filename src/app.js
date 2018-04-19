@@ -1,27 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import IndecisionApp from './Components/IndecisionApp'
+import {BrowserRouter, Route} from 'react-router-dom'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
 
-const Layout = props => {
-    return (
+const ExpenseDashboardPage = () => (
+    <div>
+        Dashboard component
+    </div>
+)
+
+const AddExpensePage = () => (
+    <div>
+        Add Expense component
+    </div>
+)
+
+const routes = (
+    <BrowserRouter>
         <div>
-            <p>Header</p>
-            {props.children}
-            <p>Footer</p>
+        <Route exact path='/' component={ExpenseDashboardPage}/>
+        <Route path='/create' component={AddExpensePage} />
         </div>
-    )
-}
+    </BrowserRouter>
+)
 
-const template = (
-        <div>
-            <h1>Page Title</h1>
-            <p>This is my page</p>
-        </div>
-    )
-
-
-
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
+ReactDOM.render(routes, document.getElementById('app'))
 
