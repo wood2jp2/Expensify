@@ -47,18 +47,14 @@ const Header = () => (
 
 const routes = (
     <BrowserRouter>
-        <div>
         <Header />
         <Switch>
-        
-        <Route exact path='/' component={ExpenseDashboardPage}/>
-        <Route path='/create' component={AddExpensePage} />
-        <Route path='/edit' component={EditExpensePage} />
-        <Route path='/help' component={HelpPage} />
-        <Route component={NotFoundPage} />
-        
+            <Route exact path='/' component={ExpenseDashboardPage}/>
+            <Route exact path='/create' component={AddExpensePage} />
+            <Route exact path='/edit' component={EditExpensePage} />
+            <Route exact path='/help' component={HelpPage} />
+            <Route component={NotFoundPage} />
         </Switch>
-         </div>
     </BrowserRouter>
 )
 
