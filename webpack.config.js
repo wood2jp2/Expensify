@@ -1,11 +1,9 @@
-// entry point? app.js
-
-// output for final JS file?
-
 const path = require('path')
 
+// Action Generators
+
 module.exports = {
-    entry: './src/playground/redux-101.js',
+    entry: './src/playground/redux-expensify.js',
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'

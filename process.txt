@@ -173,3 +173,60 @@ REDUX: Watching for changes to the store using store.subscribe()
     - We need to be able to watch and measure changes to do things like re-render our app.
     - store.subscribe takes a function that runs whenever the store changes.
         + it returns an unsubscribe function that can be called after any state change to stop the subscribe function call when the state changes.
+
+Object Destructuring
+    - Object properties on an object such as the following: 
+        const person = {
+            name: 'Josh',
+            age: 26, 
+            location: {
+                city: 'Arlington',
+                temp: 33
+            }
+        }
+
+        can be accessed like so: 
+            __ const {name = 'Anon', age} = person
+            __ const {temp: temperature = 'unknown'} = person.location
+
+        which gives us a default value for the name property (Anon) if it is not found. You can rename these
+        properties using the colon if needed.
+
+ARRAY DESTRUCTURING
+
+    ___ const address = ['123 Fake Street', 'Alexandria', 'VA', '22153']
+
+    - You can leave the last ones off if not needed. Variasbles are aligned with array items IN ORDER.
+    - You can remove the name and leave the comma if you don't need a particular array item
+    - Note, that there is nothing to rename, but you can still set defaults.
+
+    ___ const [, city, state = 'New York'] = address
+
+Redux - Action Generators: Functions that return action objects
+
+    - Instead of all the logic of each case being within your switch case(s), you want to break that out into 
+        functions that take a payload object in, and return an action object.
+        + Remember, the action object is then ingested by the createStore method, after which the store is 
+            updated accordingly.
+        + In turn, the action generator functions end up being passed into the store.dispatch functions, along with
+            the payload object.
+            - Ensure that the payload defaults to an empty object
+        + Use object destructuring in order to access any data being passed in directly.
+            - You'll need to outline defaults to these arguments in case they are NOT given.
+
+Redux - Reducers: specify how the state of the application changes in response to actions
+    - You can break out the switch statement that controls what happens to state based off the types of payload we receive, 
+        to its' own reducer function.
+        + Reference this function as you pass it into the createStore method.
+    - This is because we will have MULTIPLE reducers.
+    - Characteristics of Reducers: 
+        1. They are pure functions: output is only determined by input. They do not interact with anything outside its scope.
+        2. We should not change anything on state or action: simply we are returning an object that represents the new state.
+
+    Break out default state into a separate const that is referenced if no state is given to a reducer.    
+
+    - Combine Reducers function:
+        called as first argument within createStore()
+        Give combineReducers an object with the keys being the root state name(s), and the values will be their corresponding
+            reducer functions.
+        You'll see that state is now an object where our properties live.
