@@ -233,3 +233,16 @@ Redux - Reducers: specify how the state of the application changes in response t
     - As an aside, an action will go through BOTH reducers once combineReducers takes effect.
     - calling the uuid() function returns a unique ID we can use. 
         + Removing items (expenses) from the array becomes as easy as filtering down state to avoid that particular passed in UUID.
+
+Spread Operators: Arrays and objects
+    - Purpose: The spread operator prevents a reference to the old array or object, and returns a clone of that so as to 'keep' the old values
+    - Arrays
+        + Allow you to easily concatenate values and return a new array.
+            var newArray = [...clonedOldArray, newValueToAdd]
+    - Objects:
+        + We need to install a babel plugin to allow this to work in browser.
+            + RUN: 'npm install --save babel-plugin-transform-object-rest-spread@6.23.0'
+            + Add to .babelrc in plugins section: 'transform-object-rest-spread'
+        + var newObject = {...oldObject, anyProperty: 'string'}
+            + Add any new properties wherever. 
+            + If a property key appears twice, the value LAST set or in the spread operator overrides it.
