@@ -246,3 +246,68 @@ Spread Operators: Arrays and objects
         + var newObject = {...oldObject, anyProperty: 'string'}
             + Add any new properties wherever. 
             + If a property key appears twice, the value LAST set or in the spread operator overrides it.
+
+* Long story short: For each individual change of state, you want to have an action that returns an object with the information you need to change the state, as well as a correlating parent reducer, which changes the state
+    based off the action.type given. You will have a separate large reducer function for each tree of actions that can change state.
+
+Folder and File Setup
+    - Create folders for actions, selectors (query data from redux store such sorting), store, and reducers.
+    - set up your default exports, import any libraries and files needed for these particular files.
+    - From here, we can switch back to webpack running app.js, and import configureStore from the store folder in src folder.
+        + Set a const store = configureStore() in app.js
+
+Higher Order Components (HOC): components that render another component
+    - Goal: To reuse code.
+
+    Advantages
+
+    - Render Hijacking:
+    - Prop manipulation: 
+    - Abstract state: 
+
+    A higher order component looks to be similar to a functional, stateless component. It is fed a component(s) as the argument which is typically named
+        'WrappedComponent'. It returns a function that takes in props and THEN returns JSX (maybe a warning or something), including the WrappedComponent(s) given. Think
+        about a possible error message that may surround different fields or pages of the application. The error message is the same, but the 
+        component it wraps would be different in each case. 
+        + All of this will return a JSX component which is then rendered in place of the original component.
+        + Props can be passed to the component being passed in using a spread operator, within the JSX being rendered by the HOC.
+            - <WrappedComponent {...props} />
+            - This will iterate over all props and put them on the component like normal.
+        
+    You can pass props to the HOC itself and use conditional rendering, or even pass it on to the main component itself.
+
+Connecting React to Redux
+    - 'npm install --save react-redux@5.0.5'
+    - import { Provider } from 'react-redux'
+        + Provider allows us to provide the redux store to all of the app's components. This means we don't need to manually pass around the store.
+    - Since Provider is a react component, you can wrap <Provider store={store}> tags around your highest level components, which may be a router or something.
+    ____ - import { connect } from 'react-redux'
+        + connect is a function that connects the component to the redux store.
+            - THE FUNCTION TAKES THE STATE OBJECT AS AN ARGUMENT
+        + You will need to pass into connect a function, which returns an object with the properties that that particular component needs to access.
+            - With the return value of that, call the function while passing in the original component needing access. This will return our ConnectedReduxComponent.
+            - The information will be passed down from the Redux store, and accessible through props.
+    
+    - Make sure that the ConnectedReduxComponent is the one you now export as opposed to the original non-connected component
+    - You can break out the function that connect takes in, into its own variable, called mapStateToProps.
+    
+    This all looks like this: 
+
+            import { connect } from 'react-redux'
+
+            const ExpenseList = props => (
+                <div>
+                    <h1>ExpenseList</h1>
+                    {props.expenses && props.expenses.map((expense, i) => <p key={i}>{i + 1}. {expense.description}</p>)}
+                </div>
+            )
+
+            const mapStateToProps = state => ({
+                expenses: state.expenses
+            })
+
+            const ConnectedExpenseList = connect(mapStateToProps)(ExpenseList)
+
+            export default ConnectedExpenseList
+    
+    AS THE STORE CHANGES, ALL THIS RENDERING CODE WILL RE-RUN
