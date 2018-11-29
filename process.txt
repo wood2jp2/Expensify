@@ -290,6 +290,7 @@ Connecting React to Redux
     
     - Make sure that the ConnectedReduxComponent is the one you now export as opposed to the original non-connected component
     - You can break out the function that connect takes in, into its own variable, called mapStateToProps.
+        + mapStateToProps takes in state, and returns an object that has the fields that it needs to access on the store.
     
     This all looks like this: 
 
@@ -311,3 +312,25 @@ Connecting React to Redux
             export default ConnectedExpenseList
     
     AS THE STORE CHANGES, ALL THIS RENDERING CODE WILL RE-RUN
+
+        As components are made, depending on what they are, they will need to be connected to the store. Once again, this is done by calling the connect
+            function from 'react-redux', giving it the mapStateToProps function which takes in state and returns an object with the values that it needs to access,
+            and lastly calling that return value function with the original component. This will return a ConnectedComponent, with the mapStateToProps object
+            passed down as props to the component. 
+
+            - You will also have access to the dispatch function which we had access to on the store object, as this is passed as props to the component in question
+                as well.  
+            - Call props.dispatch() and import any action (filters in this case) so that you can change the store.
+            - NOTE: Things like deleting items means that you do NOT need access to state, so you don't have to pass anything into the connect function
+                nor call a mapStateToProps function
+            - DON'T FORGET: As state and props are passed around, you may use Object Destructuring to siphon out the variables you explicity need.
+
+Working with events, forms, and Dates
+        ERROR: if you get the error saying that you're trying to access a synthetic event, and to use event.persist(), you are probably trying to use 
+        the event value(s) in a callback which doesn't run at the same time as the event. Either use event.persist() prior, or set the values to a 
+        variable.
+    
+    - Working with the date picker: 
+        - 'npm install --save react-dates@12.7.0 react-addons-shallow-compare@15.6.0 moment@2.18.1'
+        - Use moment for time
+
