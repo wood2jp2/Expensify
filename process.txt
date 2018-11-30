@@ -344,3 +344,7 @@ Automatic Re-routing:
             ____ props.history.push('/): this redirects you to the home page.
 
 The reason why we pass up the onSubmit form function INSTEAD of adding to the Expense form is because we want to re-use ExpenseForm in the EditExpense page.
+
+Redux DevTools extension: 
+    - You have to install the extension in Chrome, AND add a line to your createStore instance as the second argument.
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
