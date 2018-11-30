@@ -1,11 +1,17 @@
 import React from 'react'
 import ExpenseForm from './ExpenseForm'
+import { connect } from 'react-redux'
+import { addExpense } from '../Actions/expenses'
 
-const AddExpensePage = () => (
+const AddExpensePage = props => (
     <div>
         <h1>Add Expense:</h1>
-        <ExpenseForm />
+        <ExpenseForm onSubmit={ expense => {
+            props.dispatch(addExpense(expense))
+            props.history.push('/')
+        }}/>
     </div>
 )
 
-export default AddExpensePage
+// we don't need anything from state so we can leave that arg empty.
+export default connect()(AddExpensePage)

@@ -330,7 +330,17 @@ Working with events, forms, and Dates
         the event value(s) in a callback which doesn't run at the same time as the event. Either use event.persist() prior, or set the values to a 
         variable.
     
-    - Working with the date picker: 
+    - Working with the date picker: https://github.com/airbnb/react-dates
         - 'npm install --save react-dates@12.7.0 react-addons-shallow-compare@15.6.0 moment@2.18.1'
         - Use moment for time
 
+            import moment from 'moment'
+            import { SingleDatePicker } from 'react-dates'
+            import 'react-dates/lib/css/_datepicker.css'
+
+Automatic Re-routing: 
+    - Remember: At the top of the application, where you render your routes, links, etc, BrowserRouter passes down certain props to ALL children components.
+        This includes things like 'location', and 'history'. Access this by 
+            ____ props.history.push('/): this redirects you to the home page.
+
+The reason why we pass up the onSubmit form function INSTEAD of adding to the Expense form is because we want to re-use ExpenseForm in the EditExpense page.
