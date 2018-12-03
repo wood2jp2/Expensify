@@ -350,4 +350,14 @@ Redux DevTools extension:
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 Testing React components using Jest:
-    - 
+    - Released by Facebook. Similar to Jasmine or Mocha (Node) or Karma (angular) but Jest works best with React.
+    - 'npm install jest@20.0.4 --save'
+        + Add "test": "jest" to package.json scripts.
+        + when you run 'npm test' it will look through your project for specified test files with an end of '.test.js'
+    - At a high level, within the test folder, add files for each of your desired to test functions. The 'test' global takes a description of what
+        you are testing, as well as a callback function. in the callback you can call the function needing testing with the appropriate values. Then`
+        use the 'expect' global, provide that the result of the function call, and call 'toBe' on the result, along with what the result should be.
+    - Setting up Jest in watch mode: 
+        + run jest with the --watch arg.
+    - toBe: always uses a triple equal ===, which will NOT work with arrays or objects. For those data types, use toEqual
+    - For dynamically generated values (say, ids), use expect.any(type) to bypass a test.
