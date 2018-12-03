@@ -348,3 +348,6 @@ The reason why we pass up the onSubmit form function INSTEAD of adding to the Ex
 Redux DevTools extension: 
     - You have to install the extension in Chrome, AND add a line to your createStore instance as the second argument.
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+Testing React components using Jest:
+    - 
