@@ -361,3 +361,5 @@ Testing React components using Jest:
         + run jest with the --watch arg.
     - toBe: always uses a triple equal ===, which will NOT work with arrays or objects. For those data types, use toEqual
     - For dynamically generated values (say, ids), use expect.any(type) to bypass a test.
+
+    - Use 'npm test -- --watch' to keep a live testing connection.

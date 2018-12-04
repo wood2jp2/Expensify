@@ -1,7 +1,7 @@
 import moment from 'moment'
 
 // Filters reducer
-const filtersDefaultState = {
+export const filtersDefaultState = {
     text: '',
     sortBy: 'date',
     startDate: moment().startOf('month'),
