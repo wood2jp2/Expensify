@@ -362,4 +362,53 @@ Testing React components using Jest:
     - toBe: always uses a triple equal ===, which will NOT work with arrays or objects. For those data types, use toEqual
     - For dynamically generated values (say, ids), use expect.any(type) to bypass a test.
 
-    - Use 'npm test -- --watch' to keep a live testing connection.
+    - Use 'npm test -- --watchAll' to keep a live testing connection for ALL tests.
+
+Snapshot Testing: Testing for React Components
+    - Testing pure components rather than functions is very different. 
+    - You are now concerned more with what JSX renders when certain data is passed in based on props, rather than what is returned from a function.
+    - We need to figure out how to virtually render component. This is where the 'react-test-renderer' package comes in.
+        + npm install --save 'react-test-renderer@16.0.0' and import at the top of any react component tests.
+        + import ReactShallowRenderer from 'react-test-renderer/shallow'
+        + You'll also obviously need to import react AND the component being tested.
+    - Shallow rendering vs. full DOM rendering
+        + Shallow rendering expects ONLY the top level component to be rendered, and not child components within.
+    - Snapshots allow you to track changes to data over time.
+    - If a component is updated, you can update the stored snapshot saved by pressing 'u'
+        + Create a new instance of ReactShallowRenderer() under the 'renderer' const
+        + call render on renderer and pass in the component.
+        expect(renderer.getRenderOutput()).toMatchSnapshot()
+
+Enzyme: uses Jest, but adds onto that for more complex Testing
+    - npm install --save enzyme@3.0.0 enzyme-adapter-react-16@1.0.0 raf@3.3.2
+        + raf: request animations frame
+    - NOW: we need to set up a setupTests.js within the tests folder, which will configure our testing suite. You need this to get enzyme working at all.
+        ____ import Enzyme from 'enzyme'
+             import Adapter from 'enzyme-adapter-react-16'
+ 
+             Enzyme.configure({
+                 adapter: new Adapter()
+             })
+    - THEN: we set up a jest.config.json
+        + setupFiles needs an array of paths to files that we want to have be fed thru our setup files
+    - You can now import {shallow} from enzyme for these particular tests.
+    - within each, const wrapper = shallow(<ComponentTested />)
+    - Now, wrapper is similar to jQuery, where it will allow you to grab certain elements based off class, id, element, etc and get properties such as text, length, and more from it to test.
+    - Now we can expect the wrapper to match the snapshot.
+
+    - npm install --save enzyme-to-json@3.0.1
+        + import toJSON from 'enzyme-to-json'
+        + Now we can compare the JSON-ified version of wrapper to the component
+        + add the following to the JSON object in jest.config.json. This will let you not need the toJSON call
+        "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ]
+
+Dynamic Components Testing: 
+    - We want to test the UNCONNECTED version of the component (without the Redux store)
+
+Simulating real events with Enzyme
+    - wrapper.find('.tagNameIdClassNameEtc).simulate('eventString')
+        + this can be a click or a change or a submit
+    - feel free to use the snapshot function to see how state / component is rendered as data change simulation is induced within the test.
+    - with events (forms, text fields that change), you will also have to pass in the EVENT object, possibly with targets and values on it.
