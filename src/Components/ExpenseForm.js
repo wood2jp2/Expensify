@@ -90,7 +90,7 @@ export default class ExpenseForm extends Component {
                     ></textarea>
                     <button
                         // disabled={!this.state.description || !this.state.amount}
-                        >Add Expense</button>
+                    >Add Expense</button>
                 </form>
             </div>
         )

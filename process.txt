@@ -412,3 +412,16 @@ Simulating real events with Enzyme
         + this can be a click or a change or a submit
     - feel free to use the snapshot function to see how state / component is rendered as data change simulation is induced within the test.
     - with events (forms, text fields that change), you will also have to pass in the EVENT object, possibly with targets and values on it.
+
+Test spies: 
+    - The point of these are to create 'fake functions' that are created by Jest for us, so that we can test and simulate, and make assertions about them.
+        + We can check if it was called, how many times, which args, etc.
+        + We can create the fake functions, pass them to our components, and then make sure the behavior is what we expected
+    - You can access props on any JSX using wrapper.find('component).prop('propName')
+        + This will return the value of the prop. If it's a function like an onChange or onSubmit function, make sure you call
+            it with the pertinent value.
+
+Redux: mapDispatchToProps  
+    - can be called as a second argument to connect()
+    - 'overrides' prop function values, so it returns object with any keys being the same function names as the ones we 
+        need to override. you can use this to dispatch returned things to the store.
