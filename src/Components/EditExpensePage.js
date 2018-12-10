@@ -6,11 +6,11 @@ import { editExpense, removeExpense } from '../Actions/expenses'
 export class EditExpensePage extends Component {
 
     onSubmit = expense => {
-        this.props.editExpense(expense.id, expense)
+        this.props.editExpense(this.props.expense.id, expense)
         this.props.history.push('/')
     }
 
-    onClick = () => {
+    onRemove = () => {
         this.props.removeExpense({id: this.props.expense.id})
         this.props.history.push('/')
     }
@@ -22,7 +22,7 @@ export class EditExpensePage extends Component {
                     { ...this.props.expense } 
                     onSubmit={this.onSubmit}
                 />
-                <button onClick={this.onClick}>Remove</button>
+                <button onClick={this.onRemove}>Remove</button>
             </div>
         )
     }
@@ -30,9 +30,9 @@ export class EditExpensePage extends Component {
 
 const mapStateToProps = (state, props) => ({ expense: state.expenses.find( expense => expense.id === props.match.params.id) })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, props) => ({
     editExpense: (id, expense) => dispatch(editExpense(id, expense)),
-    removeExpense:  ({ id }) => dispatch(removeExpense({ id }))
+    removeExpense:  (data) => dispatch(removeExpense(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage)
