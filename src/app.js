@@ -23,11 +23,6 @@ store.subscribe(() => {
     console.log(getVisibleExpenses(expenses, filters))
 })
 
-store.dispatch(addExpense({description: 'Water Bill', note: 'billz', amount: 50, createdAt: 1000}))
-store.dispatch(addExpense({description: 'Gas Bill', note: 'billz 2', amount: 250, createdAt: 500}))
-store.dispatch(addExpense({description: 'Rent', note: 'billz', amount: 1500, createdAt: 750}))
-
-
 // store.dispatch(setTextFilter('bill'))
 // store.dispatch(setTextFilter('water'))
 
