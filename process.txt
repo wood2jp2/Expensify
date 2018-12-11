@@ -425,3 +425,12 @@ Redux: mapDispatchToProps
     - can be called as a second argument to connect()
     - 'overrides' prop function values, so it returns object with any keys being the same function names as the ones we 
         need to override. you can use this to dispatch returned things to the store.
+
+Preparing your app to deploy to production:
+    - This is done using webpack for production
+        + add the following script to run in production mode to your package.json
+            => webpack -p --env -production
+        + Switch webpack to an arrow function that takes the env value and that returns the object
+            => You can check then if the env variable is equal to 'production' and build accordingly from there.
+            => In devtool in webpack config, check if it is in production mode, if so, 'source-map'
+        + Now you'll see bundle.js.map being build which contains the external shit that should not need to be requested in browser.
