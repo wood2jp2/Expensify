@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "JPW",
   "license": "MIT",
+  "engines": {
+    "node": "8.10.0"
+  },
   "scripts": {
     "serve": "live-server public",
     "build:prod": "webpack -p --env production",
