@@ -472,4 +472,14 @@ Production Web Server with Express:
         Last, we tell it where to listen to with the port.
 
 Pushing to Heroku
-    - 
+    - Login from the command line: 'heroku login'
+    - 'heroku create [project name]'
+        + This creates another remote git repo. If you run git remote, you'll see that.
+    - We need to now teach heroku to start up our node server
+        + You must specify a start script within the package.json so that it knows how to start up the node server.
+        + Then, currently, it's listening to a static port (3000). We need to know how to respond to a Heroku provided environment variable.
+            port = process.env.PORT || 3000
+    - Lastly, we need to know how to run webpack from Heroku so that it sees assets.
+        + First, add the four generated files to .gitignore (bundles, and styles in public folder)
+        "heroku-postbuild": "npm run build:prod"
+        TO package.json scripts.
