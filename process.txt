@@ -483,3 +483,10 @@ Pushing to Heroku
         + First, add the four generated files to .gitignore (bundles, and styles in public folder)
         "heroku-postbuild": "npm run build:prod"
         TO package.json scripts.
+        Then push to heroku master
+
+Optimization:
+    - Dependencies you don't need in production should go under devDependencies.
+        + Do this by npm install --dev when installing a dependency.
+    - You can delete your node_modules folder and npm install --production, and it will only install the ones not under devDependencies.
+    - Use a 'dist' folder within the public folder to make webpack dump the styles and bundle files it creates in there.
