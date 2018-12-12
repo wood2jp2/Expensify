@@ -457,3 +457,19 @@ Breaking out CSS into it's own file
         + Change 
     SOURCE MAPS: tell you the actual file a style or script came from, INSTEAD of the bundled version of the styles.
     BUNDLES can be recreated by simply running the build.
+
+Production Web Server with Express: 
+    - We currently do not need the excess features (such as live-reload) that live-server etc has. This takes up resources
+    - We need to create one file in a 'server' folder with about 15 lines of code
+        + This will serve up our public folder.
+    - Install express and start by requiring the packages at the top of the file.
+    - This middleware will run for each request to server that serves up assets based off request from directory.
+
+    Call app.use, and app.listen to specify port and callback function.
+    You will run prod build again to rebuild the assets we previously deleted. and then run node server/server.js again.
+    So we create an express application, then we tell it to use the public directory to serve up our assets.
+        We also create a fallback so that if there isn't a file for a route visited, it falls back to index.html to be served.
+        Last, we tell it where to listen to with the port.
+
+Pushing to Heroku
+    - 
