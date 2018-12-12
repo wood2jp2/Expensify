@@ -490,3 +490,7 @@ Optimization:
         + Do this by npm install --dev when installing a dependency.
     - You can delete your node_modules folder and npm install --production, and it will only install the ones not under devDependencies.
     - Use a 'dist' folder within the public folder to make webpack dump the styles and bundle files it creates in there.
+
+New Feature Workflow:
+    - We installed the numeral npm package and ensured that the date and amounts were formatted correctly.
+    
