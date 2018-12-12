@@ -14,7 +14,7 @@ import './Styles/styles.scss'
 import 'react-dates/lib/css/_datepicker.css'
 
 const store = configureStore()
-console.log('fdsasdf')
+
 store.subscribe(() => {
     const 
         state = store.getState(),

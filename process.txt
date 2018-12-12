@@ -432,5 +432,28 @@ Preparing your app to deploy to production:
             => webpack -p --env -production
         + Switch webpack to an arrow function that takes the env value and that returns the object
             => You can check then if the env variable is equal to 'production' and build accordingly from there.
-            => In devtool in webpack config, check if it is in production mode, if so, 'source-map'
+            => In devtool in webpack config, check if it is in production mode using the 'env' value, if so, 'source-map'
         + Now you'll see bundle.js.map being build which contains the external shit that should not need to be requested in browser.
+
+Breaking out CSS into it's own file
+    - Issue: currently, all of it lives within the bundle.js, which means the file is bigger than it needs to be and doing things it shouldn't be doing.
+    - We need to output the styles into a separate file, and then link it within the index.html
+    - We're going to use a webpack plugin to extract this: https://www.npmjs.com/package/extract-text-webpack-plugin
+    - Install, require it within webpack.config, and create a new instance within the Module.exports.
+        + The instance takes one argument, which is the styles file (styles.css)
+    - You'll have to modify the 'use' rule to be equal to
+    ____        use: CSSExtract.extract({
+                    use: [
+                        'css-loader',
+                        'sass-loader'
+                    ]
+                })
+    ___ Also, add the plugins array to the webpack config and add CSSExtract variable to it.
+        + Plugins would change your webpack build and should include anything that should have access to it.
+    - If you now run build:prod, you'll see FOUR assets being outputted by the webpack build.
+        + You'll see styles.css and styles.css.map now in your public folder.
+        + Make sure you link the styles.css like normal in the index.html
+    - Now, styles will show up with source-maps in prod, but NOT dev. We can delete the bundles and styles files from the public folder, and run dev-server to prove that.
+        + Change 
+    SOURCE MAPS: tell you the actual file a style or script came from, INSTEAD of the bundled version of the styles.
+    BUNDLES can be recreated by simply running the build.
