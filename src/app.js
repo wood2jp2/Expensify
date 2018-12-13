@@ -4,9 +4,6 @@ import { Provider } from 'react-redux'
 
 import AppRouter from './Routers/AppRouter'
 import configureStore from './Store/configureStore'
-
-import { addExpense, removeExpense, editExpense } from './Actions/expenses'
-import { setTextFilter, setStartDate, setEndDate, sortByAmount, sortByDate } from './Actions/filters'
 import getVisibleExpenses from './Selectors/expenses'
 
 import 'normalize.css/normalize.css'
@@ -22,7 +19,6 @@ store.subscribe(() => {
     console.log(getVisibleExpenses(expenses, filters))
 })
 
-// store.dispatch(setTextFilter('bill'))
 // store.dispatch(setTextFilter('water'))
 
 const jsx = (
