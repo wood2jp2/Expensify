@@ -494,3 +494,16 @@ Optimization:
 New Feature Workflow:
     - We installed the numeral npm package and ensured that the date and amounts were formatted correctly.
     
+Firebase: 
+    - Built on NoSQL, is essentially a JS object.
+    - firebase.google.com for new DB, change auth rules to true so that you don't have to be logged in at first to CRUD.
+    - npm install --save firebase@4.2.0
+    - Create a Firebase folder and file within the src folder. The goal is to connect to firebase within this file, and any time we need access     then we can just import the file.
+    - Firebase has authentication, file features, 
+    - firebase.initializeApp(dbConfig)
+        firebase.database().ref().set({
+            name: 'Josh Wood'
+        })
+        + ref() is a reference to which subset of the database you want to access. If no arg is given, then the root of the db is defaulted.
+            + You can also create a new one in the same way.
+        + set() sets the value(s). It does not have to take an object, rather in can take any normal data type, but it will wipe the data in the db at that point.
