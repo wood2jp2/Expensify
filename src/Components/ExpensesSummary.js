@@ -7,7 +7,7 @@ import getVisibleExpenses from '../Selectors/expenses'
 export const ExpensesSummary = (props) => {
 
     const visibleExpenses = getVisibleExpenses(props.expenses, props.filters),
-        expenseWord = props.expenses.length != 1 ? 'expenses' : 'expense',
+        expenseWord = visibleExpenses.length != 1 ? 'expenses' : 'expense',
         formattedExpenseTotal = numeral(totalExpenses(visibleExpenses)/100).format('$0,0.00');
     
     return (
