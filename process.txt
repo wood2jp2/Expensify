@@ -520,3 +520,30 @@ Promises:
     - A promise can EITHER be resolved OR rejected ONCE, and they can only take a single argument. If multiple data points need to be passed along, use an object
 
     NOTE: Very rarely will you find yourself creating your own promises, and usually you will just be using the .then and .catch methods on packages that have a function returning a promise (think an axios call).
+
+Promises with Firebase: 
+    - Methods like set and ref are promise-based, so if you deny read write privileges to the DB, and chain on a then/catch to the calls when attempting to add data, you can see that the catch is called with the error.
+
+Removing Firebase data from DB
+    - ref('path').remove(): returns promise
+    - You can also specify the path, and pass in null to .set(null) and it will delete.
+
+INTELLISENSE: 
+    - If there is a question mark, then the argument is optional. After the colon, it implies what the function actually returns
+        database.ref().remove(onComplete?: a: error => any): firebase.Promise<any>
+
+Updating data: 
+    database.ref().update({
+        property: updatedValue
+    })
+    - Also supports promises.
+    - Has to be called with an object. The point is to update multiple values at a time, otherwise, you use set.
+    - Nested data (inside of an object, say, at the root level) need to be passed the path to the key of the object in order to be set correctly, and NOT override the other values within.
+
+Read Data: 
+    - You can either read from data ONCE, or subscribe to changes so that you're notified each time it changes.
+    - You can reference, call the once method, and pass the 'value' string to that, then use promise chains.
+        + Then takes the snapshot argument, which is a shot of the database as a whole. Use val() on that to get the value of the location you passed in. 
+        + Catch will provide any errors.
+    - Subscribing: .on('value') method
+        + pass in a second callback function for the second argument and you will run that each time the db value(s) change.

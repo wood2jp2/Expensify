@@ -12,25 +12,57 @@ const dbConfig = {
 
 firebase.initializeApp(dbConfig)
 const database = firebase.database()
-database.ref('age').once('value').then(snapshot => console.log(snapshot))
 
-database.ref().set({
-    name: 'Josh Wood',
-    age: 26,
-    isSingle: false,
-    location: {
-        city: 'Falls Church',
-        country: 'United States'
-    }
+database.ref().on('value', snapshot => {
+    console.log(snapshot.val())
 })
 
-database.ref('age').set(27)
-database.ref('location/city').set('Arlington')
+setTimeout(() => database.ref().update({
+    age: 27
+}), 3500)
 
+// database.ref().set({
+//     name: 'Josh Wood',
+//     age: 26,
+//     stressLevel: 1,
+//     isSingle: false,
+//     job: {
+//         company: 'Capital One',
+//         title: 'Junior Software Developer',
+//     },
+//     location: {
+//         city: 'Tysons Corner',
+//         country: 'United States'
+//     }
+// })
+// .then(() => console.log('data is saved!!!'))
+// .catch(error => console.log('there was an error: ' + error))
 
-database.ref('attributes').set({
-    height: 71,
-    weight: 171
-})
+// Same as removing
+// database.ref('isSingle').set(null) 
 
-console.log('firebase running') 
+// database.ref('isSingle').remove()
+//     .then(() => console.log('isSingle was removed'))
+//     .catch(e => console.log('there was an error: ', e))
+
+// Updating values
+// database.ref().update({
+//     name: 'Joshua Wood',
+//     isSingle: null,
+//     jobTitle: 'Senior Software Developer',
+//     'location/city': 'LA'
+// })
+
+// database.ref().update({
+//     stressLevel: 9,
+//     'job/company': 'Amazon',
+//     'location/city': 'Seattle'
+// })
+
+// READING DATA
+// database.ref().once('value')
+//     .then(snapshot => {
+//         const val = snapshot.val()
+//         console.log(val.age)
+//     })
+//     .catch(e => console.log("error", e))
