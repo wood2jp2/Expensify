@@ -12,6 +12,7 @@ const dbConfig = {
 
 firebase.initializeApp(dbConfig)
 const database = firebase.database()
+database.ref('age').once('value').then(snapshot => console.log(snapshot))
 
 database.ref().set({
     name: 'Josh Wood',
@@ -25,6 +26,7 @@ database.ref().set({
 
 database.ref('age').set(27)
 database.ref('location/city').set('Arlington')
+
 
 database.ref('attributes').set({
     height: 71,

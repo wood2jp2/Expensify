@@ -507,3 +507,16 @@ Firebase:
         + ref() is a reference to which subset of the database you want to access. If no arg is given, then the root of the db is defaulted.
             + You can also create a new one in the same way.
         + set() sets the value(s). It does not have to take an object, rather in can take any normal data type, but it will wipe the data in the db at that point.
+
+Promises: 
+    - These allow us to wait for one task to complete before doing another task 
+        1. Making a request to a server
+        2. Looking for a file
+        3. Taking a picture with a webcam
+        4. Updating a firebase database
+    - The promise.then method allows you to wait until the promise resolves. The argument is essentially whatever you gave the resolve function when you initiated the promise. You can specify what you specifically want to do with that data within the promise.then method.
+        + catch is the same thing as then: it does whatever you outline within it, with whatever it is fed through the reject function at the time of initialization. You can try a request again, or print out an error message to the user.
+        + CATCH can be substituted by simply passing a second function to the promise.then method.
+    - A promise can EITHER be resolved OR rejected ONCE, and they can only take a single argument. If multiple data points need to be passed along, use an object
+
+    NOTE: Very rarely will you find yourself creating your own promises, and usually you will just be using the .then and .catch methods on packages that have a function returning a promise (think an axios call).

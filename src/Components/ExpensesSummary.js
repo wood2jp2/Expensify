@@ -4,7 +4,7 @@ import totalExpenses from '../Selectors/expenses-total'
 import numeral from 'numeral'
 import getVisibleExpenses from '../Selectors/expenses'
 
-export const ExpensesSummary = (props) => {
+export const ExpensesSummary = props => {
 
     const visibleExpenses = getVisibleExpenses(props.expenses, props.filters),
         expenseWord = visibleExpenses.length != 1 ? 'expenses' : 'expense',
