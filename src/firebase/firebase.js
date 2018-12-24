@@ -14,12 +14,13 @@ firebase.initializeApp(dbConfig)
 const database = firebase.database()
 
 database.ref().on('value', snapshot => {
-    console.log(snapshot.val())
-})
+    const val = snapshot.val()
+    console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`)
+}, e => console.log('error: ', e))
 
-setTimeout(() => database.ref().update({
-    age: 27
-}), 3500)
+// setTimeout(() => database.ref().update({ age: 28 }), 3500)
+// setTimeout(() => database.ref().off(onValueChange), 7000)
+// setTimeout(() => database.ref().update({ d: true }), 10500)
 
 // database.ref().set({
 //     name: 'Josh Wood',
@@ -41,7 +42,7 @@ setTimeout(() => database.ref().update({
 // Same as removing
 // database.ref('isSingle').set(null) 
 
-// database.ref('isSingle').remove()
+// database.ref('ds').remove()
 //     .then(() => console.log('isSingle was removed'))
 //     .catch(e => console.log('there was an error: ', e))
 
@@ -62,7 +63,7 @@ setTimeout(() => database.ref().update({
 // READING DATA
 // database.ref().once('value')
 //     .then(snapshot => {
-//         const val = snapshot.val()
+//         const val = val
 //         console.log(val.age)
 //     })
 //     .catch(e => console.log("error", e))

@@ -539,6 +539,7 @@ Updating data:
     - Also supports promises.
     - Has to be called with an object. The point is to update multiple values at a time, otherwise, you use set.
     - Nested data (inside of an object, say, at the root level) need to be passed the path to the key of the object in order to be set correctly, and NOT override the other values within.
+    - On a new field, not in DB, it adds it new.
 
 Read Data: 
     - You can either read from data ONCE, or subscribe to changes so that you're notified each time it changes.
